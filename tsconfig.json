@@ -14,7 +14,13 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ngx-formly-ng-zorro-antd": [
+        "dist/ngx-formly-ng-zorro-antd/ngx-formly-ng-zorro-antd",
+        "dist/ngx-formly-ng-zorro-antd"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

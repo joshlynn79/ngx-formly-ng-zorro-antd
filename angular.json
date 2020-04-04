@@ -2,5 +2,167 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "ngx-formly-ng-zorro-antd": {
+      "projectType": "library",
+      "root": "projects/ngx-formly-ng-zorro-antd",
+      "sourceRoot": "projects/ngx-formly-ng-zorro-antd/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-formly-ng-zorro-antd/tsconfig.lib.json",
+            "project": "projects/ngx-formly-ng-zorro-antd/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-formly-ng-zorro-antd/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-formly-ng-zorro-antd/src/test.ts",
+            "tsConfig": "projects/ngx-formly-ng-zorro-antd/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-formly-ng-zorro-antd/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-formly-ng-zorro-antd/tsconfig.lib.json",
+              "projects/ngx-formly-ng-zorro-antd/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "ngx-formly-ng-zorro-ant-demo": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/ngx-formly-ng-zorro-ant-demo",
+      "sourceRoot": "projects/ngx-formly-ng-zorro-ant-demo/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/ngx-formly-ng-zorro-ant-demo",
+            "index": "projects/ngx-formly-ng-zorro-ant-demo/src/index.html",
+            "main": "projects/ngx-formly-ng-zorro-ant-demo/src/main.ts",
+            "polyfills": "projects/ngx-formly-ng-zorro-ant-demo/src/polyfills.ts",
+            "tsConfig": "projects/ngx-formly-ng-zorro-ant-demo/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/ngx-formly-ng-zorro-ant-demo/src/favicon.ico",
+              "projects/ngx-formly-ng-zorro-ant-demo/src/assets"
+            ],
+            "styles": [
+              "projects/ngx-formly-ng-zorro-ant-demo/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/ngx-formly-ng-zorro-ant-demo/src/environments/environment.ts",
+                  "with": "projects/ngx-formly-ng-zorro-ant-demo/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ngx-formly-ng-zorro-ant-demo:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ngx-formly-ng-zorro-ant-demo:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ngx-formly-ng-zorro-ant-demo:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-formly-ng-zorro-ant-demo/src/test.ts",
+            "polyfills": "projects/ngx-formly-ng-zorro-ant-demo/src/polyfills.ts",
+            "tsConfig": "projects/ngx-formly-ng-zorro-ant-demo/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-formly-ng-zorro-ant-demo/karma.conf.js",
+            "assets": [
+              "projects/ngx-formly-ng-zorro-ant-demo/src/favicon.ico",
+              "projects/ngx-formly-ng-zorro-ant-demo/src/assets"
+            ],
+            "styles": [
+              "projects/ngx-formly-ng-zorro-ant-demo/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-formly-ng-zorro-ant-demo/tsconfig.app.json",
+              "projects/ngx-formly-ng-zorro-ant-demo/tsconfig.spec.json",
+              "projects/ngx-formly-ng-zorro-ant-demo/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/ngx-formly-ng-zorro-ant-demo/e2e/protractor.conf.js",
+            "devServerTarget": "ngx-formly-ng-zorro-ant-demo:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ngx-formly-ng-zorro-ant-demo:serve:production"
+            }
+          }
+        }
+      }
+    }},
+  "defaultProject": "ngx-formly-ng-zorro-antd"
 }
